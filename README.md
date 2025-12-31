@@ -4,7 +4,7 @@ This website is made for greetings purposes.
 <div align="center">
 <h1>🎆 Happy New Year 2026 Greeting Website 🎆</h1>
 <p>
-An interactive, animated greeting card website built with HTML5 Canvas and Tailwind CSS.
+An interactive, animated greeting card website built with HTML5 and Tailwind CSS and JS.
 <br />
 <strong>Perfect for sending personalized wishes to friends and family!</strong>
 </p>
