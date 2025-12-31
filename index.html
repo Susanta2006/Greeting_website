@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year 2026</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden; /* Prevent scrollbars during fireworks */
+            background-color: #0f0f1a;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .handwriting {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        /* Gradient Animation for the background */
+        .bg-animated {
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #000000);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Fade transitions */
+        .fade-out {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease-out;
+        }
+        
+        .fade-in {
+            opacity: 1 !important;
+            transition: opacity 1.5s ease-in;
+        }
+
+        /* Glowing Text Effect */
+        .glow-text {
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.5), 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Button Shine Effect */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        .btn-shine:hover::after {
+            left: 100%;
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        #content-layer {
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="bg-animated h-screen w-screen flex items-center justify-center">
+
+    <!-- Canvas for Fireworks -->
+    <div id="canvas-container">
+        <canvas id="fireworksCanvas"></canvas>
+    </div>
+
+    <!-- Main Container -->
+    <div id="content-layer" class="w-full max-w-md p-6 text-center">
+        
+        <!-- Screen 1: Input Form -->
+        <div id="intro-screen" class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 shadow-2xl transform transition-all duration-500 hover:scale-105">
+            <h1 class="text-3xl font-bold mb-2 text-yellow-400 tracking-wider">Welcome!</h1>
+            <p class="text-gray-300 mb-6 text-sm">Please enter your name to begin the celebration.</p>
+            
+            <div class="space-y-4">
+                <input type="text" id="name-input" 
+                    class="w-full px-4 py-3 rounded-full bg-black/40 border border-yellow-500/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all text-center text-lg"
+                    placeholder="Your Name Here..." 
+                    autocomplete="off">
+                
+                <button onclick="startCelebration()" 
+                    class="btn-shine w-full py-3 px-6 rounded-full bg-gradient-to-r from-yellow-500 to-amber-600 text-white font-bold text-lg shadow-lg hover:shadow-yellow-500/50 transform hover:-translate-y-1 transition-all duration-300">
+                    Open Your Gift 🎁
+                </button>
+            </div>
+        </div>
+
+        <!-- Screen 2: Greeting Message (Hidden by default) -->
+        <div id="greeting-screen" class="opacity-0 hidden flex-col items-center justify-center h-full space-y-6">
+            <h2 class="text-2xl md:text-3xl font-light tracking-[0.2em] text-gray-300 uppercase">Wishing a very</h2>
+            
+            <h1 class="handwriting text-6xl md:text-8xl text-yellow-400 glow-text leading-tight py-4">
+                Happy New Year<br>
+                <span class="text-white text-5xl md:text-7xl font-sans font-bold tracking-tighter mt-2 block">2026</span>
+            </h1>
+            
+            <div class="mt-8 space-y-2">
+                <p class="text-xl text-gray-200">To the very Special,</p>
+                <h3 id="display-name" class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-white to-yellow-300 animate-pulse">
+                    Friend
+                </h3>
+            </div>
+
+            <p class="text-gray-400 max-w-sm mx-auto mt-6 text-sm leading-relaxed bg-black/30 p-4 rounded-lg backdrop-blur-sm border border-white/10">
+                May the coming year bring you success, joy, and peace. Let's toast to new beginnings and unforgettable memories!
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Logic to handle Screen Transition ---
+        function startCelebration() {
+            const inputName = document.getElementById('name-input').value.trim();
+            
+            if (!inputName) {
+                alert("Please tell us your name first! ✨");
+                return;
+            }
+
+            // Set the name
+            document.getElementById('display-name').textContent = inputName;
+
+            // Transition UI
+            const introScreen = document.getElementById('intro-screen');
+            const greetingScreen = document.getElementById('greeting-screen');
+
+            introScreen.classList.add('fade-out');
+            
+            setTimeout(() => {
+                introScreen.style.display = 'none';
+                greetingScreen.classList.remove('hidden');
+                // Trigger reflow
+                void greetingScreen.offsetWidth;
+                greetingScreen.classList.add('fade-in');
+            }, 800); // Wait for fade out
+
+            // Start Fireworks
+            initFireworks();
+        }
+
+        // --- Fireworks Logic (Canvas) ---
+        const canvas = document.getElementById('fireworksCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let fireworks = [];
+        let animationId;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Firework {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height;
+                this.sx = Math.random() * 3 - 1.5; // horizontal speed
+                this.sy = -(Math.random() * 4 + 10); // vertical speed (upwards)
+                this.size = 2;
+                this.hue = Math.floor(Math.random() * 360);
+                this.exploded = false;
+            }
+            update() {
+                this.x += this.sx;
+                this.y += this.sy;
+                this.sy += 0.15; // gravity
+
+                // Explode when reaching peak or slowing down
+                if (this.sy >= -2 && !this.exploded) {
+                    this.exploded = true;
+                    createParticles(this.x, this.y, this.hue);
+                }
+            }
+            draw() {
+                if (!this.exploded) {
+                    ctx.fillStyle = `hsl(${this.hue}, 100%, 50%)`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+
+        class Particle {
+            constructor(x, y, hue) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 6 - 3;
+                this.speedY = Math.random() * 6 - 3;
+                this.hue = hue;
+                this.color = `hsl(${hue}, 100%, 50%)`;
+                this.life = 100;
+                this.decay = Math.random() * 1.5 + 1; // how fast it fades
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.speedY += 0.05; // gravity
+                this.life -= this.decay;
+                this.size -= 0.02;
+            }
+            draw() {
+                ctx.fillStyle = `hsla(${this.hue}, 100%, 50%, ${this.life / 100})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size > 0 ? this.size : 0, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function createParticles(x, y, hue) {
+            for (let i = 0; i < 40; i++) {
+                particles.push(new Particle(x, y, hue));
+            }
+        }
+
+        function initFireworks() {
+            animate();
+            // Launch a firework occasionally
+            setInterval(() => {
+                fireworks.push(new Firework());
+            }, 800);
+        }
+
+        function animate() {
+            // Semi-transparent clear for trail effect
+            ctx.fillStyle = 'rgba(15, 12, 41, 0.2)'; 
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Update and draw fireworks
+            for (let i = 0; i < fireworks.length; i++) {
+                fireworks[i].update();
+                fireworks[i].draw();
+                if (fireworks[i].exploded) {
+                    fireworks.splice(i, 1);
+                    i--;
+                }
+            }
+
+            // Update and draw particles
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                if (particles[i].life <= 0 || particles[i].size <= 0) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+            
+            animationId = requestAnimationFrame(animate);
+        }
+    </script>
+</body>
+</html>
