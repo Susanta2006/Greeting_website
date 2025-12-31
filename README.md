@@ -10,7 +10,7 @@ An interactive, animated greeting card website built with HTML5 and Tailwind CSS
 </p>
 
 <h3>
-<a href="https://www.google.com/search?q=https://wishingsyou.netlify.app/">🔴 View Live Demo</a>
+<a href="https://wishingsyou.netlify.app/">🔴 View Live Demo</a>
 </h3>
 </div>
 <br />
