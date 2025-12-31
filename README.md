@@ -8,18 +8,6 @@ An interactive, animated greeting card website built with HTML5 Canvas and Tailw
 <br />
 <strong>Perfect for sending personalized wishes to friends and family!</strong>
 </p>
-<p>
-<a href="https://www.google.com/search?q=https://github.com/Susanta2006/Greeting_website/issues">
-<img src="https://www.google.com/search?q=https://img.shields.io/github/issues/Susanta2006/Greeting_website%3Fcolor%3Dyellow%26style%3Dflat-square" alt="Issues" />
-</a>
-<a href="https://www.google.com/search?q=https://github.com/Susanta2006/Greeting_website/stargazers">
-<img src="https://www.google.com/search?q=https://img.shields.io/github/stars/Susanta2006/Greeting_website%3Fcolor%3Dgold%26style%3Dflat-square" alt="Stars" />
-</a>
-<br />
-<img src="https://www.google.com/search?q=https://img.shields.io/badge/HTML5-E34F26%3Fstyle%3Dfor-the-badge%26logo%3Dhtml5%26logoColor%3Dwhite" />
-<img src="https://www.google.com/search?q=https://img.shields.io/badge/Tailwind_CSS-38B2AC%3Fstyle%3Dfor-the-badge%26logo%3Dtailwind-css%26logoColor%3Dwhite" />
-<img src="https://www.google.com/search?q=https://img.shields.io/badge/JavaScript-F7DF1E%3Fstyle%3Dfor-the-badge%26logo%3Djavascript%26logoColor%3Dblack" />
-</p>
 
 <h3>
 <a href="https://www.google.com/search?q=https://wishingsyou.netlify.app/">🔴 View Live Demo</a>
